@@ -21,20 +21,20 @@
   grid-area: title;
   max-width: 373px;
   margin: 0;
-  /* text-overflow: ellipsis; */
+  text-overflow: ellipsis; 
   white-space: nowrap;
   overflow: hidden;
-  width: max-content;
+  max-width: 440px;
 }
 
-.profile__description {
+/* .profile__description {
   font-family: "Inter", Arial, sans-serif;
   font-size: 18px;
   list-style: 22px;
   font-weight: 400;
   grid-area: description;
   margin: 0;
-}
+} */
 
 .profile__image {
   height: 120px;
