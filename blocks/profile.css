@@ -24,7 +24,7 @@
   text-overflow: ellipsis; 
   white-space: nowrap;
   overflow: hidden;
-  max-width: 440px;
+  max-width: 400px;
 }
 
 /* .profile__description {
@@ -109,10 +109,10 @@
     margin-top: 25px;
   }
 
-  .profile__description {
+ /* .profile__description {
     width: 100%;
     text-align: center;
-  }
+  } */
 
   .profile__edit-button {
     height: 18px;
