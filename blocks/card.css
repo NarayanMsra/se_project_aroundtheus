@@ -7,6 +7,7 @@
 }
 
 .card__image {
+  object-fit: cover;
   height: 282px;
   width: 282px;
 }
@@ -18,7 +19,6 @@
   align-items: center;
   justify-content: space-between;
   padding: 25px 18px 30px 20px;
-  /* gap: 5px; */
 }
 
 .card__title {
