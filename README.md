@@ -48,6 +48,9 @@ This project is made so all the elements are displayed correctly on popular scre
 ### License
 © 2025 Around The U.S. // From TripleTen Sprint-3 project. 
 
+### GitHub Pages: 
+[here](https://narayanmsra.github.io/se_project_aroundtheus/)
+
 ##### Video of project 
 [here](https://youtu.be/rmagEr3dB0E)  
 
