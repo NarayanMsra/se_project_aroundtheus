@@ -28,8 +28,8 @@ This project is made so all the elements are displayed correctly on popular scre
 * copyright information. 
   
 ## Tools used
-**HTML5**
-**CSS**
+* HTML5
+* CSS
 **Figma**  
 * [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)  
   
@@ -47,6 +47,9 @@ This project is made so all the elements are displayed correctly on popular scre
 
 ### License
 © 2025 Around The U.S. // From TripleTen Sprint-3 project. 
+
+### GitHub Pages: 
+[here](https://narayanmsra.github.io/se_project_aroundtheus/)
 
 ##### Video of project 
 [here](https://youtu.be/rmagEr3dB0E)  
