@@ -1,0 +1,124 @@
+.modal {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.15);
+  padding: 19px;
+  z-index: 999;
+  /* visibility: hidden; */
+  /* opacity: 0; */
+  transition: visibility 0.3s, opacity 0.3s ease-in;
+}
+
+.modal__container {
+  width: 430px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: auto;
+  padding: 36px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.modal_opened {
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal__image-container {
+  position: relative;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.modal__form-input {
+  font-family: "Inter", Arial, sans-serif;
+  border: none;
+  border-bottom: solid 1px rgba(84, 84, 84, 70%);
+  padding-bottom: 13px;
+}
+
+.modal__close {
+  background-image: url(../images/Close\ Icon.svg);
+  width: 40px;
+  height: 40px;
+  bottom: calc(100% + 5px);
+  left: calc(100% + 5px);
+  position: absolute;
+  border: none;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  transition: opacity 0.5s ease-in;
+}
+
+.modal__close:hover {
+  opacity: 60%;
+}
+
+.modal__heading {
+  font-family: "Inter", Arial, sans-serif;
+  margin: 0 0 54px;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29.05px;
+  color: #000;
+}
+
+.modal__button-save {
+  background-color: #000;
+  color: #fff;
+  font-family: "Inter", Arial, sans-serif;
+  height: 50px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.78px;
+  align-items: center;
+  cursor: pointer;
+  margin: 25px 0 0;
+  border-radius: 2px;
+  border-width: 1px;
+  transition: opacity 0.5s ease-in;
+}
+
+.modal__button-save:hover {
+  opacity: 60%;
+}
+
+@media screen and (max-width: 480px) {
+  .modal__container {
+    width: 282px;
+    padding: 22px;
+    margin-top: 123px;
+  }
+
+  .modal__heading {
+    font-size: 18px;
+  }
+
+  .modal__close {
+    width: 26px;
+    height: 26px;
+    left: unset;
+    right: 0;
+    bottom: calc(100% + 18px);
+  }
+
+  .modal__button-save {
+    font-size: 14px;
+    line-height: 16.94px;
+  }
+}
