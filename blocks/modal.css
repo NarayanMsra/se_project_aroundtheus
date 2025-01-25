@@ -10,8 +10,8 @@
   background-color: rgba(0, 0, 0, 0.15);
   padding: 19px;
   z-index: 999;
-  /* visibility: hidden; */
-  /* opacity: 0; */
+  visibility: hidden;
+  opacity: 0;
   transition: visibility 0.3s, opacity 0.3s ease-in;
 }
 
@@ -96,6 +96,24 @@
 
 .modal__button-save:hover {
   opacity: 60%;
+}
+
+.modal__image-preview {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.modal__image-container {
+  max-width: 75vw;
+  max-height: 75vw;
+  width: 0;
+  height: 100%;
+  padding: 0;
+  margin: auto;
+  position: relative;
+  background-color: transparent;
+  box-sizing: content-box;
 }
 
 @media screen and (max-width: 480px) {

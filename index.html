@@ -31,11 +31,15 @@
             <button
               type="button"
               class="profile__edit-button"
-              id="profile__edit"
+              id="profile__editButton"
             ></button>
             <p class="profile__bio">Explorer</p>
           </div>
-          <button type="button" class="profile__add-button"></button>
+          <button
+            type="button"
+            class="profile__add-button"
+            id="profile__add-CardButton"
+          ></button>
         </section>
         <!-- ---------------CARD--------------- -->
         <section class="cards page__section">
@@ -115,18 +119,20 @@
       <div class="modal__container">
         <button class="modal__close"></button>
         <p class="modal__heading">Edit Profile</p>
-        <form class="modal__form">
+        <form class="modal__form" name="profile__EditModal">
           <input
             class="modal__form-input"
             type="text"
             name="title"
-            placeholder="Jacques Cousteau"
+            placeholder="Name"
+            id="profile-NameModal"
           />
           <input
             class="modal__form-input"
             type="text"
             name="bio"
             placeholder="Description"
+            id="profile-bioModal"
           />
           <button class="modal__button-save">Save</button>
         </form>
@@ -137,24 +143,38 @@
       <div class="modal__container">
         <button class="modal__close"></button>
         <p class="modal__heading">New Place</p>
-        <form class="modal__form">
+        <form class="modal__form" name="add__cardModal">
           <input
             class="modal__form-input"
             type="text"
             name="title"
             placeholder="Title"
+            id="modal-InputForm"
           />
           <input
             class="modal__form-input"
             type="text"
             name="bio"
             placeholder="Image Link"
+            id="Input-LinkModal"
           />
           <button class="modal__button-save">Save</button>
         </form>
       </div>
     </div>
-    <!----------------Modal for cross card-->
+    <!----------------Modal for close-->
+
+    <div class="modal" id="modal-image-preview">
+      <div class="modal__image-container">
+        <button class="modal__close modal__close_image" type="button"></button>
+        <img
+          class="modal__preview-image"
+          id="modal-preview-image"
+          alt="image-preview"
+        />
+        <p class="modal__image-caption"></p>
+      </div>
+    </div>
 
     <script src="./scripts/index.js"></script>
   </body>
