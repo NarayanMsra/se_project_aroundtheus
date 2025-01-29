@@ -33,14 +33,14 @@ const initialCards = [
 //*----------------ELEMENT---------*/
 const profileEditButton = document.querySelector("#profile__editButton");
 const profileTitle = document.querySelector(".profile__title");
-const profile__addButton = document.querySelector("#profile__add-CardButton");
+const profileAddButton = document.querySelector("#profile__add-CardButton");
 const profileBio = document.querySelector(".profile__bio");
 const cardList = document.querySelector(".cards__list");
 const closeButtons = document.querySelector(".modal__close");
 
 //----------------Modal section-----------/
 const profileEditModal = document.querySelector("#modal-edit-profile");
-const profileEdit_name = document.querySelector["profile__EditModal"];
+const profileEditName = document.querySelector["profile__EditModal"];
 const cardAdd = document.querySelector["add__cardModal"];
 const profileNameInput = document.querySelector("#profile-NameModal");
 const profileBioInput = document.querySelector("#profile-bioModal");
