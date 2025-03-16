@@ -38,25 +38,25 @@
           <button
             type="button"
             class="profile__add-button"
-            id="profile__add-CardButton"
+            id="add-CardButton"
           ></button>
         </section>
-        <!-- ---------------CARD--------------- -->
+        <!-- ---------------CARD----------------->
         <section class="cards page__section">
           <ul class="cards__list"></ul>
         </section>
       </main>
-      <!-- ----------------------FOOTER-------------------- -->
+      <!-- ----------------------FOOTER---------------------->
       <div class="footer page__section">
         <p class="footer__copyright">&copy; 2025 Around The U.S.</p>
       </div>
     </div>
-    <!------------------MODAL---Edit-Profile----------------------------------->
+    <!------------------MODAL---Edit-Profile------------------->
     <div class="modal" id="profile-editModal">
       <div class="modal__container">
         <button class="modal__close" type="button"></button>
         <p class="modal__heading">Edit Profile</p>
-        <form class="modal__form" name="profile__EditModal">
+        <form class="modal__form" name="profile__Edit-form">
           <input
             class="modal__form-input"
             type="text"
@@ -76,40 +76,55 @@
       </div>
     </div>
     <!---------------------Modal--Add--New Place-------------->
-    <div class="modal" id="modal-add-card">
+    <div class="modal" id="add-card-modal">
       <div class="modal__container">
         <button class="modal__close"></button>
         <p class="modal__heading">New Place</p>
-        <form class="modal__form" name="add__cardModal">
+        <form class="modal__form" name="add__card-form">
           <input
             class="modal__form-input"
             type="text"
             name="title"
             placeholder="Title"
-            id="modal-InputForm"
+            id="card-title-input"
           />
           <input
             class="modal__form-input"
             type="text"
             name="bio"
             placeholder="Image Link"
-            id="Input-LinkModal"
+            id="image-link-input"
           />
           <button class="modal__button-save" type="submit">Save</button>
         </form>
       </div>
     </div>
-
+    <!----------Preview image-->
+    <div class="modal" id="preview-imageModal">
+      <div class="modal__imageContainer">
+        <button
+          class="modal__close modal__close_type-image-modal"
+          type="button"
+        ></button>
+        <img
+          class="modal__imagePreview"
+          id="image-preview"
+          alt="image-preview"
+        />
+        <p class="modal__imageCaption"></p>
+      </div>
+    </div>
+    <!--------Card Template-->
     <template id="card-template">
       <li class="card">
         <img src="" alt="" class="card__image" />
-        <div class="card__description">
+        <button type="button" class="card__button-delete"></button>
+        <div class="card__content">
           <h2 class="card__title"></h2>
-          <button type="button" class="card__like-button"></button>
+          <button type="button" class="card__button-like"></button>
         </div>
       </li>
     </template>
-
     <script src="./scripts/index.js"></script>
   </body>
 </html>
