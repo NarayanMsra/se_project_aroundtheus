@@ -56,6 +56,7 @@
   border: none;
   border-bottom: solid 1px rgba(84, 84, 84, 70%);
   padding-bottom: 13px;
+  width: 100%;
 }
 
 .modal__close {
@@ -100,6 +101,27 @@
   border-radius: 2px;
   border-width: 1px;
   transition: opacity 0.5s ease-in;
+}
+
+.modal__error {
+  display: none;
+  color: #ff0000;
+  font-size: 12px;
+  margin-top: 5px;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+.modal__submit-btn_disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.modal__input_error {
+  border-color: #ff0000;
+}
+
+.modal__error-visible {
+  display: block;
 }
 
 .modal__button-save:hover {

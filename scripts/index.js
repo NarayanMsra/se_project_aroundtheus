@@ -94,7 +94,7 @@ function renderCard(cardData, cardListElement) {
   cardListElement.prepend(cardElement);
 }
 
-initialCards.forEach((cardData) => renderCard(cardData, cardListElement));//
+initialCards.forEach((cardData) => renderCard(cardData, cardListElement));
 
 closeButtons.forEach((button) => {
   const modal = button.closest(".modal");
@@ -140,3 +140,25 @@ addCardModalCloseButton.addEventListener("click", () => {
 profileEditForm.addEventListener("submit", handleProfileFormSubmit);
 
 addCardForm.addEventListener("submit", handleAddCardFormSubmit);
+
+//Closing the Popup by Clicking on the Overlay
+const modals = document.querySelectorAll(".modal");
+
+modals.forEach((modal) => {
+  modal.addEventListener("mousedown", (e) => {
+    if (e.target === modal) {
+      closeModal(modal);
+    }
+  });
+});
+
+//Closing the Popup by Pressing Esc
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    const openModal = document.querySelector(".modal_opened");
+
+    if (openModal) {
+      closeModal(openModal);
+    }
+  }
+});
