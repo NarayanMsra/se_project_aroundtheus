@@ -103,10 +103,12 @@ closeButtons.forEach((button) => {
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", handleEscape); //Pressing Esc first add
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEscape); //Pressing Esc second remove
 }
 
 //---------------Event Handlers -------------------------//
@@ -153,7 +155,7 @@ modals.forEach((modal) => {
 });
 
 //Closing the Popup by Pressing Esc
-document.addEventListener("keydown", (e) => {
+function handleEscape(e) {
   if (e.key === "Escape") {
     const openModal = document.querySelector(".modal_opened");
 
@@ -161,4 +163,4 @@ document.addEventListener("keydown", (e) => {
       closeModal(openModal);
     }
   }
-});
+}

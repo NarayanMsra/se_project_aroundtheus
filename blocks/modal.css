@@ -109,9 +109,10 @@
   font-size: 12px;
   margin-top: 5px;
   font-family: "Inter", Arial, sans-serif;
+  position: absolute;
 }
 
-.modal__submit-btn_disabled {
+.modal__button-save_disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
