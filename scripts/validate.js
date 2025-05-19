@@ -9,7 +9,7 @@ const showInputError = (
 
   const errorEls = form.querySelector(`#${inputEls.id}-error`);
 
-  inputEls.classList.add(inputErrorClass); //add red borede
+  inputEls.classList.add(inputErrorClass); //add red border
   errorEls.textContent = errorMessage; //show error message
   errorEls.classList.add(errorClass); //make error message visible
 };
