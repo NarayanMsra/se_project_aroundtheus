@@ -41,13 +41,6 @@ export default class Card {
     this._cardElement = null;
   }
 
-  // _handlePreviewPicture(cardData) {
-  //   imagePreview.src = cardData.link;
-  //   imagePreview.alt = cardData.name;
-  //   previewImageCaption.textContent = cardData.name;
-  //   openModal(previewImageModal);
-  // }
-
   getView() {
     this._cardElement = document
       .querySelector(this._cardSelector)

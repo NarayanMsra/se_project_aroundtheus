@@ -1,8 +1,6 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 
-// const ESC_KEYCODE = 27;
-
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -30,7 +28,7 @@ const initialCards = [
   },
 ];
 
-//------------------------------card link
+//------------------------------card link------------------------------------------------------//
 const cardData = {
   name: "Yosemite Valley",
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
@@ -66,16 +64,6 @@ const closeButtons = document.querySelectorAll(".modal__close");
 const nameInput = document.querySelector("#profile-name-input");
 const jobInput = document.querySelector("#profile-bio-input");
 
-// Like button handler
-// const handleLikeIcon = (e) => {
-//   e.target.classList.toggle("card__button-like_active");
-// };
-
-/////////Delete card handler
-// const handleDeleteCard = (e) => {
-//   const card = e.target.closest(".card").remove();
-// };
-
 // Preview image handler
 const handlePreviewPicture = (cardData) => {
   imagePreview.src = cardData.link;
@@ -95,25 +83,12 @@ const getCardElement = (cardData) => {
   cardImageElement.src = cardData.link;
   cardImageElement.alt = cardData.name;
   cardTitleElement.textContent = cardData.name;
-
-  // likeButton.addEventListener("click", handleLikeIcon);
-
-  // deleteButton.addEventListener("click", handleDeleteCard);
-
-  // cardImageElement.addEventListener("click", () =>
-  //   handlePreviewPicture(cardData)
-  // );
-
-  // return cardElement;
 };
 
 // Render card to list
 const renderCard = (cardData, cardListElement) => {
-  // const cardElement = getCardElement(cardData);
-  // instantiate Card class
-const card = new Card(cardData, "#card-template", handlePreviewPicture);
-  // call its geView() method
-  const cardElement = card.getView();
+  const card = new Card(cardData, "#card-template", handlePreviewPicture); // instantiate Card class
+  const cardElement = card.getView(); // call its geView() method
   cardListElement.prepend(cardElement);
 };
 
