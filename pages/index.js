@@ -28,12 +28,6 @@ const initialCards = [
   },
 ];
 
-//------------------------------card link------------------------------------------------------//
-const cardData = {
-  name: "Yosemite Valley",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-};
-
 // Template
 const cardTemplate = document
   .querySelector("#card-template")
@@ -47,8 +41,10 @@ const previewImageModal = document.querySelector("#preview-imageModal");
 
 const profileEditForm = document.forms["profile__Edit-form"];
 const addCardForm = document.forms["add__card-form"];
-const cardTitleInput = addCardForm.querySelector("#card-title-input");
+// const cardTitleInput = addCardForm.querySelector("#card-title-input");
+const cardTitleInput = addCardForm.elements["title"];
 const cardImageLinkInput = addCardForm.querySelector("#image-link-input");
+// const cardImageLinkInput = addCardForm.elements["link"];
 
 const imagePreview = previewImageModal.querySelector(".modal__imagePreview");
 const previewImageCaption = previewImageModal.querySelector(
@@ -56,10 +52,10 @@ const previewImageCaption = previewImageModal.querySelector(
 );
 
 const profileEditButton = document.querySelector(".profile__edit-button");
-const addCardModalCloseButton = document.querySelector("#add-CardButton");
+const addCardModalButton = document.querySelector("#add-CardButton");
 const profileTitle = document.querySelector(".profile__title");
 const profileBio = document.querySelector(".profile__bio");
-const closeButtons = document.querySelectorAll(".modal__close");
+const closeButtons = document.querySelectorAll(".modal__close");// need to check
 
 const nameInput = document.querySelector("#profile-name-input");
 const jobInput = document.querySelector("#profile-bio-input");
@@ -70,19 +66,6 @@ const handlePreviewPicture = (cardData) => {
   imagePreview.alt = cardData.name;
   previewImageCaption.textContent = cardData.name;
   openModal(previewImageModal);
-};
-
-// Create card DOM element
-const getCardElement = (cardData) => {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImageElement = cardElement.querySelector(".card__image");
-  const cardTitleElement = cardElement.querySelector(".card__title");
-  const likeButton = cardElement.querySelector(".card__button-like");
-  const deleteButton = cardElement.querySelector(".card__button-delete");
-
-  cardImageElement.src = cardData.link;
-  cardImageElement.alt = cardData.name;
-  cardTitleElement.textContent = cardData.name;
 };
 
 // Render card to list
@@ -123,17 +106,22 @@ const handleAddCardFormSubmit = (e) => {
   renderCard({ name, link }, cardListElement);
   e.target.reset();
   closeModal(addCardModal);
+ 
+  // addFormValidator.disableSubmitButton();
+  formValidators["add__card-form"].disableSubmitButton();
 };
 
 // Profile Edit Button
 profileEditButton.addEventListener("click", () => {
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileBio.textContent;
+  // editFormValidator.resetValidation();
+  formValidators["profile__Edit-form"].resetValidation();
   openModal(editProfileModal);
 });
 
 // Add Card Button
-addCardModalCloseButton.addEventListener("click", () => {
+addCardModalButton.addEventListener("click", () => {
   openModal(addCardModal);
 });
 
@@ -141,15 +129,10 @@ addCardModalCloseButton.addEventListener("click", () => {
 profileEditForm.addEventListener("submit", handleProfileFormSubmit);
 addCardForm.addEventListener("submit", handleAddCardFormSubmit);
 
-closeButtons.forEach((button) => {
-  const modal = button.closest(".modal");
-  button.addEventListener("click", () => closeModal(modal));
-});
-
-// Overlay click to close
-document.querySelectorAll(".modal").forEach((modal) => {
+const modals = document.querySelectorAll(".modal");
+modals.forEach((modal) => {
   modal.addEventListener("mousedown", (e) => {
-    if (e.target === modal) {
+    if (e.target === modal || e.target.classList.contains("modal__close")) {
       closeModal(modal);
     }
   });
@@ -167,6 +150,7 @@ const handleEscape = (e) => {
 
 // Form validation setup
 const validationSettings = {
+  formSelector: ".modal__form",
   inputSelector: ".modal__form-input",
   submitButtonSelector: ".modal__button-save",
   inactiveButtonClass: "modal__button-save_disabled",
@@ -174,11 +158,25 @@ const validationSettings = {
   errorClass: "modal__error-visible",
 };
 
-const editformEl = editProfileModal.querySelector(".modal__form");
-const addformEl = addCardModal.querySelector(".modal__form");
+const editFormElement = editProfileModal.querySelector(".modal__form");
+const addFormElement = addCardModal.querySelector(".modal__form");
 
-const editFormValidator = new FormValidator(validationSettings, editformEl);
-const addFormValidator = new FormValidator(validationSettings, addformEl);
+// Define an object to store all form validators
+const formValidators = {};
 
-editFormValidator.enableValidation();
-addFormValidator.enableValidation();
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement);
+    
+    // Ensure each form has a unique `name` attribute in index.html
+    const formName = formElement.getAttribute('name');
+
+    // Store the validator using the form's name as the key
+    formValidators[formName] = validator;
+
+    validator.enableValidation();
+  });
+};
+enableValidation(validationSettings);
