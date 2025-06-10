@@ -1,7 +1,6 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import "../pages/index.css";
-import Popup from "../components/Popup.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
@@ -9,16 +8,13 @@ import UserInfo from "../components/UserInfo.js";
 import { initialCards, validationSettings } from "../utils/constants.js";
 
 // -----------------DOM Element ----------------------//
-const addCardForm = document.forms["add__card-form"]; 
+const addCardForm = document.forms["add__card-form"];
 
-const cardTitleInput = addCardForm.elements["title"]; 
-const cardImageLinkInput = addCardForm.elements["link"]; 
+const profileEditButton = document.querySelector(".profile__edit-button");
+const addNewCardButton = document.querySelector("#add-CardButton");
 
-const profileEditButton = document.querySelector(".profile__edit-button"); 
-const addNewCardButton = document.querySelector("#add-CardButton"); 
-
-const nameInput = document.querySelector("#profile-name-input"); 
-const jobInput = document.querySelector("#profile-bio-input"); 
+const nameInput = document.querySelector("#profile-name-input");
+const jobInput = document.querySelector("#profile-bio-input");
 
 // Preview image handler
 const handlePreviewPicture = (cardData) => {
@@ -35,23 +31,19 @@ const createCard = (cardData) => {
 const cardSection = new Section(
   {
     items: initialCards,
-    renderer: (item) => {
-      const card = createCard(item);
-      cardSection.addItem(card);
-    },
+    renderer: (item) => renderCard(item),
   },
   ".cards__list"
 );
+
+const renderCard = (item) => {
+  const card = createCard(item);
+  cardSection.addItem(card);
+};
 cardSection.renderItems();
 
-//----------PopupWithForm-----------//
-const newCardPopup = new PopupWithForm("#add-card-modal", (inputValues) => {
-  const cardElement = createCard({
-    name: inputValues.title,
-    link: inputValues.url,
-  });
-  // const card = createCard(cardData);
-  cardSection.addItem(cardElement);
+const newCardPopup = new PopupWithForm("#add-card-modal", ({ title, url }) => {
+  renderCard({ name: title, link: url });
   newCardPopup.close();
 });
 newCardPopup.setEventListeners();
