@@ -6,14 +6,16 @@ class FormValidator {
     this._inputErrorClass = settings.inputErrorClass;
     this._errorClass = settings.errorClass;
     this._form = form;
-    this._buttonElement = this._form.querySelector(this._submitButtonSelector); 
+    this._buttonElement = this._form.querySelector(this._submitButtonSelector);
     this._inputList = Array.from(
       this._form.querySelectorAll(this._inputSelector)
     );
   }
 
   _showInputError(inputElement) {
-    const errorMessage = this._form.querySelector("#" + inputElement.id + "-error");
+    const errorMessage = this._form.querySelector(
+      "#" + inputElement.id + "-error"
+    );
     inputElement.classList.add(this._inputErrorClass); //add red border
     errorMessage.textContent = inputElement.validationMessage; //show error message
     errorMessage.classList.add(this._errorClass); //make error message visible
@@ -45,7 +47,6 @@ class FormValidator {
 
   _toggleButtonState() {
     const hasInvalidInput = this._hasInvalidInput();
-
     if (this._hasInvalidInput()) {
       this.disableSubmitButton();
     } else {

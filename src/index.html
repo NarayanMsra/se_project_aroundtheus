@@ -4,16 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Around The US.</title>
-
-    <!-- <link href="./pages/index.css" rel="stylesheet" /> -->
-
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
   </head>
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
         <img
-          src ="<%=require('./images/logoaroundUS.svg')%>";
+          src="<%=require('./images/logoaroundUS.svg')%>"
+          ;
           alt="Around the U.S. Logo"
           class="header__logo"
         />
@@ -26,6 +24,12 @@
             alt="Avatar"
             class="profile__image"
           />
+          <button
+            class="profile__avatar-edit-button"
+            type="button"
+            aria-label="edit"
+          ></button>
+
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -51,6 +55,36 @@
         <p class="footer__copyright">&copy; 2025 Around The U.S.</p>
       </div>
     </div>
+
+    <!------------------------ Change Avatar modal --------------------->
+    <div class="modal" id="change-avatar-modal">
+      <div class="modal__container">
+        <button class="modal__close"></button>
+        <p class="modal__heading">Change profile picture</p>
+        <form
+          class="modal__form"
+          id="change-avatar-form"
+          name="change-avatar-form"
+        >
+          <label for="change-avatar-url-input" class="modal__label">
+            <input
+              class="modal__form-input"
+              type="url"
+              name="link"
+              placeholder="Image link"
+              id="change-avatar-url-input"
+              required
+            />
+            <span
+              class="modal__error"
+              id="change-avatar-url-input-error"
+            ></span>
+          </label>
+          <button class="modal__button-save">Save</button>
+        </form>
+      </div>
+    </div>
+
     <!------------------MODAL---Edit-Profile------------------->
     <div class="modal" id="profile-editModal">
       <div class="modal__container">
@@ -125,6 +159,18 @@
         </form>
       </div>
     </div>
+
+    <!-- -Confirm Delete Modal  -->
+    <div class="modal" id="confirm-delete-modal">
+      <div class="modal__container" id="confirm-delete-modal-container">
+        <button class="modal__close"></button>
+        <p class="modal__heading">Are you sure?</p>
+        <form class="modal__form" id="confirm-delete-form">
+          <button class="modal__button-save" type="submit">Yes</button>
+        </form>
+      </div>
+    </div>
+
     <!----------Preview image-->
     <div class="modal" id="preview-imageModal">
       <div class="modal__imageContainer">
@@ -147,10 +193,12 @@
         <button type="button" class="card__button-delete"></button>
         <div class="card__content">
           <h2 class="card__title"></h2>
-          <button type="button" class="card__button-like"></button>
+          <div class="card__like-container">
+            <button type="button" class="card__button-like"></button>
+            <span class="card__like-count"></span>
+          </div>
         </div>
       </li>
     </template>
-    <!-- <script type="module" src="./pages/index.js"></script> -->
   </body>
 </html>
