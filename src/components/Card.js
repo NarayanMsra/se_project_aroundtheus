@@ -35,9 +35,6 @@ export default class Card {
   handleLikes({ likes, isLiked }) {
     this._likes = likes || [];
     this._isLiked = isLiked;
-    // if (this._likeCounter) {
-    //   this._likeCounter.textContent = this._likes.length;
-    // }
     this._handleLikeIcon();
   }
 
@@ -78,11 +75,6 @@ export default class Card {
     image.alt = this._name;
 
     this._cardElement.querySelector(".card__title").textContent = this._name;
-
-    // this._likeCounter = this._cardElement.querySelector(".card__like-count");
-    // this._likeCounter.textContent = Array.isArray(this._likes)
-    //   ? this._likes.length
-    //   : 0;
 
     this._setEventListeners();
     this._handleLikeIcon();

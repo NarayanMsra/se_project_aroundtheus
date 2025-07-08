@@ -42,7 +42,6 @@ const userInfo = new UserInfo({
 
 const confirmDeletePopup = new PopupWithConfirmation({
   popupSelector: "#confirm-delete-modal",
-  // handleFormSubmit:confirmDeletePopup,
 });
 confirmDeletePopup.setEventListeners();
 
@@ -73,7 +72,6 @@ api
 const handleLikeClick = (card) => {
   const cardId = card.getId();
   const isLiked = card.isLiked();
-
   const request = isLiked ? api.unlikeCard(cardId) : api.likeCard(cardId);
 
   request
@@ -96,7 +94,16 @@ const handleDeleteClick = (cardData) => {
   confirmDeletePopup.open();
 };
 
+//---------------Delete Button-----------------------------//
 confirmDeletePopup.setSubmitAction(() => {
+  const deleteButton = document.querySelector(
+    "#confirm-delete-modal .modal__button-save"
+  );
+  const originalButtonText = deleteButton.textContent;
+
+  deleteButton.textContent = "Deleting...";
+  deleteButton.disabled = true;
+
   api
     .deleteCard(cardToDelete._id)
     .then(() => {
@@ -104,7 +111,11 @@ confirmDeletePopup.setSubmitAction(() => {
       cardToDelete = null;
       confirmDeletePopup.close();
     })
-    .catch((err) => console.error("Failed to delete card:", err));
+    .catch((err) => console.error("Failed to delete card:", err))
+    .finally(() => {
+      deleteButton.textContent = originalButtonText;
+      deleteButton.disabled = false;
+    });
 });
 
 //--------Create Card----------//
@@ -127,25 +138,42 @@ const renderCard = (item) => {
 };
 
 //-----------add card modal-------------//
+const addSubmitButton = document.querySelector(
+  "#add-card-modal .modal__button-save"
+);
+
 const newCardPopup = new PopupWithForm("#add-card-modal", ({ title, url }) => {
+  const originalButtonText = addSubmitButton.textContent;
+
+  // Change button text to show loading state
+  addSubmitButton.textContent = "Saving...";
+  addSubmitButton.disabled = true;
+
   api
     .addCard({ name: title, link: url })
     .then((card) => {
       renderCard(card);
       newCardPopup.close();
     })
-    .catch((err) => console.error("Failed to add card:", err));
+    .catch((err) => console.error("Failed to add card:", err))
+    .finally(() => {
+      // Reset button text and state regardless of success/failure
+      addSubmitButton.textContent = originalButtonText;
+      addSubmitButton.disabled = false;
+    });
 });
 newCardPopup.setEventListeners();
 
 //------------Edit Profile Modal ------------//
-const profilePopup = new PopupWithForm("#profile-editModal", (cardData) => {
+const profilePopup = new PopupWithForm("#profile-editModal", (formData) => {
+  const { title, bio } = formData;
+
   api
-    .setUserInfo({ name: cardData.title, about: cardData.bio })
-    .then((cardData) => {
+    .setUserInfo({ name: title, about: bio })
+    .then((updatedData) => {
       userInfo.setUserInfo({
-        title: cardData.name,
-        bio: cardData.about,
+        name: updatedData.name,
+        job: updatedData.about,
       });
       profilePopup.close();
     })
@@ -176,7 +204,7 @@ profileEditButton.addEventListener("click", () => {
   const userData = userInfo.getUserInfo();
   nameInput.value = userData.name;
   jobInput.value = userData.job;
-  document.forms["profile__Edit-form"].reset();
+  
   formValidators["profile__Edit-form"].resetValidation();
   profilePopup.open();
 });
