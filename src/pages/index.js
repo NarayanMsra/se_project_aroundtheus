@@ -165,33 +165,55 @@ const newCardPopup = new PopupWithForm("#add-card-modal", ({ title, url }) => {
 newCardPopup.setEventListeners();
 
 //------------Edit Profile Modal ------------//
+const profileSubmitButton = document.querySelector(
+  "#profile-editModal .modal__button-save"
+);
+
 const profilePopup = new PopupWithForm("#profile-editModal", (formData) => {
-  const { title, bio } = formData;
+  const originalText = profileSubmitButton.textContent;
+  profileSubmitButton.textContent = "Saving...";
+  profileSubmitButton.disabled = true;
 
   api
-    .setUserInfo({ name: title, about: bio })
-    .then((updatedData) => {
+    .setUserInfo({ name: formData.title, about: formData.bio })
+    .then((userData) => {
       userInfo.setUserInfo({
-        name: updatedData.name,
-        job: updatedData.about,
+        name: userData.name,
+        job: userData.about,
       });
       profilePopup.close();
     })
-    .catch((err) => console.error("Failed to update profile:", err));
+    .catch((err) => console.error("Failed to update profile:", err))
+    .finally(() => {
+      profileSubmitButton.textContent = originalText;
+      profileSubmitButton.disabled = false;
+    });
 });
 profilePopup.setEventListeners();
 
 //------------------Change Avatar Modal-------------//
+const avatarSubmitButton = document.querySelector(
+  "#change-avatar-modal .modal__button-save"
+);
+
 const changeAvatarModal = new PopupWithForm(
   "#change-avatar-modal",
   ({ link }) => {
+    const originalText = avatarSubmitButton.textContent;
+    avatarSubmitButton.textContent = "Saving...";
+    avatarSubmitButton.disabled = true;
+
     api
       .setUserAvatar({ avatar: link })
       .then((userData) => {
         userInfo.changeAvatarImage(userData.avatar);
         changeAvatarModal.close();
       })
-      .catch((err) => console.error("Failed to change avatar:", err));
+      .catch((err) => console.error("Failed to change avatar:", err))
+      .finally(() => {
+        avatarSubmitButton.textContent = originalText;
+        avatarSubmitButton.disabled = false;
+      });
   }
 );
 changeAvatarModal.setEventListeners();
@@ -204,7 +226,7 @@ profileEditButton.addEventListener("click", () => {
   const userData = userInfo.getUserInfo();
   nameInput.value = userData.name;
   jobInput.value = userData.job;
-  
+
   formValidators["profile__Edit-form"].resetValidation();
   profilePopup.open();
 });
@@ -214,7 +236,7 @@ addNewCardButton.addEventListener("click", () => {
   newCardPopup.open();
   formValidators["add__card-form"].resetValidation();
 });
-
+//change avatar modal
 changeAvatarButton.addEventListener("click", () => {
   changeAvatarModal.open();
   formValidators["change-avatar-form"].resetValidation();
