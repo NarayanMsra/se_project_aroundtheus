@@ -76,6 +76,7 @@
 
 .modal__close:hover {
   opacity: 60%;
+  cursor: pointer;
 }
 
 .modal__heading {
@@ -104,12 +105,19 @@
 }
 
 .modal__error {
-  display: none;
+  /* display: none; */
   color: #ff0000;
   font-size: 12px;
   margin-top: 5px;
   font-family: "Inter", Arial, sans-serif;
-  position: absolute;
+  /* position: absolute; */
+  visibility: hidden;
+  opacity: 0;
+  top: calc(100% + 5px);
+}
+
+.modal__label {
+  position: relative;
 }
 
 .modal__button-save_disabled {
@@ -122,7 +130,9 @@
 }
 
 .modal__error-visible {
-  display: block;
+  /* display: block; */
+  opacity: 1;
+  visibility: visible;
 }
 
 .modal__button-save:hover {
