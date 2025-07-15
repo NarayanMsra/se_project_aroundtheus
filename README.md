@@ -54,3 +54,11 @@ This project is made so all the elements are displayed correctly on popular scre
 ##### Video of project 
 [here](https://youtu.be/rmagEr3dB0E)  
 
+### Image
+<img width="1104" height="1201" alt="Screenshot 2025-07-14 at 8 13 58 PM" src="https://github.com/user-attachments/assets/b53884e3-87f7-4949-9cdc-e32fabd815c9" />
+button
+<img width="1082" height="1178" alt="Screenshot 2025-07-14 at 8 14 31 PM" src="https://github.com/user-attachments/assets/4b5d9a9e-458c-4f6a-822b-40839d7eb19a" />
+Network and Device
+<img width="2553" height="1198" alt="Screenshot 2025-07-14 at 8 16 13 PM" src="https://github.com/user-attachments/assets/ec9a945e-77a7-4ca1-8728-448317124458" />
+
+
